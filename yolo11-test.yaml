@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: yolo11-test
+  namespace: nsf-maica
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                  - NVIDIA-A10
+
+      containers:
+      - name: yolo-test
+        image: ultralytics/ultralytics:latest
+        imagePullPolicy: Always
+
+        command: ["/bin/bash", "-lc"]
+        args:
+          - |
+            set -euxo pipefail
+            python -V
+            nvidia-smi
+
+            echo "[INFO] Verifying model weights..."
+            ls -lh /workspace/output/yolov11-2nd/train_session2/weights
+
+            echo "[INFO] Verifying test dataset..."
+            ls -lh /workspace/data/yolov11-Feb11th-dataset/test/images
+
+            echo "[INFO] Running YOLO inference..."
+            python /workspace/test.py
+
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            cpu: "10"
+            memory: "64Gi"
+          limits:
+            nvidia.com/gpu: 1
+            cpu: "16"
+            memory: "100Gi"
+
+        volumeMounts:
+        - name: work
+          mountPath: /workspace
+
+      volumes:
+      - name: work
+        persistentVolumeClaim:
+          claimName: internvl-work
