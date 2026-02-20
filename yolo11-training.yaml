@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: yolo11-training
+  namespace: nsf-maica
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                  - NVIDIA-A10
+
+      containers:
+      - name: yolo-train
+        image: ultralytics/ultralytics:latest
+        imagePullPolicy: Always
+
+        command: ["/bin/bash", "-lc"]
+        args:
+          - |
+            set -euxo pipefail
+            python -V
+            nvidia-smi
+
+            echo "[INFO] Checking dataset on PVC..."
+            ls -al /workspace/data/yolov11-Feb11th-dataset
+
+            echo "[INFO] Starting YOLO training..."
+            python /workspace/waste_characterization.py
+
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            cpu: "8"
+            memory: "48Gi"
+          limits:
+            nvidia.com/gpu: 1
+            cpu: "16"
+            memory: "100Gi"
+
+        volumeMounts:
+        - name: work
+          mountPath: /workspace
+
+      volumes:
+      - name: work
+        persistentVolumeClaim:
+          claimName: internvl-work
