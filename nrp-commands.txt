@@ -1,0 +1,51 @@
+To run (download) the yolov11 model into the NRP
+
+kubectl apply -f /home/troy/yolo-nrp-proj/yolo11-model-download.yaml -n nsf-maica
+
+kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-model-download.yaml -n nsf-maica
+
+
+Update Step 1 in PVC:
+kubectl cp \
+  /home/troy/yolo-nrp-proj/waste-characterization.py \
+  nsf-maica/pvc-explorer:/workspace/waste_characterization.py
+
+Update Step 2 in PVC:
+kubectl cp \
+  /home/troy/yolo-nrp-proj/test.py \
+  nsf-maica/pvc-explorer:/workspace/test.py
+
+Reupload dataset to PVC:
+kubectl cp \
+  /home/troy/Downloads/jam-causing-material-CURRENT.yolov11 \
+  nsf-maica/pvc-explorer:/workspace/data/
+
+ls -al /workspace/data/jam-causing-material-CURRENT.yolov11  (For YAML file)
+
+ ls -lh /workspace/output/yolov11/train_session3/weights  (From test yaml previously)
+
+
+Uploading latest dataset (Feb 11th)
+kubectl cp \
+  /home/troy/yolov11-Feb11th-dataset \
+  nsf-maica/pvc-explorer:/workspace/data/
+
+
+
+Step 1: Running the training session for the Yolo Model
+kubectl apply -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n nsf-maica
+
+kubectl logs -f job/yolo11-training -n nsf-maica
+
+kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n nsf-maica
+
+Path in PVC to where the model's training should be saved: /workspace/output/yolov11/train_session3/weights
+This is the location of where you can find the best.pt file!
+
+Step 2: Running the Test python script for the Yolo model
+kubectl apply -f /home/troy/yolo-nrp-proj/yolo11-test.yaml -n nsf-maica
+
+kubectl logs -f job/yolo11-test -n nsf-maica
+
+kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-test.yaml -n nsf-maica
+
