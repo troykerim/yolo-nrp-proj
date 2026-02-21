@@ -4,7 +4,7 @@ import os
 
 
 def main():
-    OUTPUT_ROOT = "/workspace/output/yolov11-2nd"
+    OUTPUT_ROOT = "/workspace/output/yolov11-3rd"
     os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
     model = YOLO("/workspace/models/yolo/yolo11m.pt")
@@ -12,7 +12,8 @@ def main():
     print(f"Using device: {model.device}")
 
     train_results = model.train(
-        data="/workspace/data/yolov11-Feb11th-dataset/data.yaml",
+        # data="/workspace/data/yolov11-Feb11th-dataset/data.yaml", jam-material-YOLO
+        data="/workspace/data/jam-material-YOLO/data.yaml",
         workers=8,
         batch=8,
         epochs=300,
