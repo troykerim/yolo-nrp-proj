@@ -14,7 +14,7 @@ def main():
     train_results = model.train(
         # data="/workspace/data/yolov11-Feb11th-dataset/data.yaml", jam-material-YOLO
         data="/workspace/data/jam-material-YOLO/data.yaml",
-        workers=8,
+        workers=2,   # if an error occurs, change to either 1 or 2
         batch=8,
         epochs=300,
         optimizer="AdamW",
