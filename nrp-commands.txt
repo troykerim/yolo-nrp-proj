@@ -22,13 +22,17 @@ kubectl cp \
 
 ls -al /workspace/data/jam-causing-material-CURRENT.yolov11  (For YAML file)
 
- ls -lh /workspace/output/yolov11/train_session3/weights  (From test yaml previously)
+ls -lh /workspace/output/yolov11/train_session3/weights  (From test yaml previously)
 
 
 Uploading latest dataset (Feb 11th)
 kubectl cp \
   /home/troy/yolov11-Feb11th-dataset \
   nsf-maica/pvc-explorer:/workspace/data/
+
+
+Download the lastest YOLO model prediction commands:
+
 
 
 
@@ -52,3 +56,11 @@ kubectl logs -f job/yolo11-test -n nsf-maica
 
 kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-test.yaml -n nsf-maica
 
+
+
+PVC Commands:
+kubectl apply -f /home/troy/internvl-nrp-proj/pvc-explorer.yaml -n nsf-maica
+
+kubectl exec -it pvc-explorer -n nsf-maica -- sh
+
+kubectl delete pod pvc-explorer -n nsf-maica --ignore-not-found
