@@ -56,7 +56,10 @@ kubectl logs -f job/yolo11-test -n nsf-maica
 
 kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-test.yaml -n nsf-maica
 
-
+Copy a training session from NRP to local PC
+kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11-3rd/train_session4 \
+/home/troy/yolo-nrp-proj/training-sessions/training-2-21 \
+-n nsf-maica
 
 PVC Commands:
 kubectl apply -f /home/troy/internvl-nrp-proj/pvc-explorer.yaml -n nsf-maica
