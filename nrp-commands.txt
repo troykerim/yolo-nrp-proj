@@ -39,6 +39,9 @@ kubectl logs -f job/yolo11-training -n nsf-maica
 
 kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n nsf-maica
 
+kubectl describe pod yolo11-training-XXXXX -n nsf-maica
+
+
 Path in PVC to where the model's training should be saved: /workspace/output/yolov11/train_session3/weights
 This is the location of where you can find the best.pt file!
 

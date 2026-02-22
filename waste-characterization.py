@@ -24,7 +24,7 @@ def main():
         lrf=0.001,
         iou=0.5,
         mosaic=0.7,
-        patience=40,
+        patience=40,     # patience=0 to disable EarlyStopping
 
         fliplr=0.5,   # horizontal flip probability
         flipud=0.5,   # vertical flip probability
