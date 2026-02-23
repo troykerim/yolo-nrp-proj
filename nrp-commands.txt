@@ -31,8 +31,14 @@ kubectl cp \
   nsf-maica/pvc-explorer:/workspace/data/
 
 
-Download the lastest YOLO model prediction commands:
+Download the lastest YOLO model's session file command:
+Replace the /yolov11..., train_session#...& train...
+kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11.../train_session#... \
+/home/troy/yolo-nrp-proj/training-sessions/train...
 
+
+kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11-3rd/train_session23 \
+/home/troy/yolo-nrp-proj/training-sessions/training-2-22
 
 
 

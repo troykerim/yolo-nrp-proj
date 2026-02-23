@@ -36,12 +36,12 @@ def main():
         data="/workspace/data/jam-material-YOLO/data.yaml",
         workers=2,                  # 1, 2, 8; NRP complained about 8 last time
         batch=8,
-        epochs=300,
+        epochs=400,
         optimizer="AdamW",
         imgsz=640,
         weight_decay=0.001,
-        lr0=0.01,
-        lrf=0.001,
+        lr0=0.005,
+        lrf=0.01,
         iou=0.5,
         mosaic=0.7,
         patience=0,                # 40, = 0 means no early stopping
