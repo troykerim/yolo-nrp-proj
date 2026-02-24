@@ -44,7 +44,7 @@ def main():
         lrf=0.01,
         iou=0.5,
         mosaic=0.7,
-        patience=0,                # 40, = 0 means no early stopping
+        patience=40,                # 40, = 0 means no early stopping
         fliplr=0.5,
         flipud=0.5,
         bgr=0.3,
