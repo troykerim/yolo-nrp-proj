@@ -67,6 +67,11 @@ kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11-3rd/train_session4 \
 /home/troy/yolo-nrp-proj/training-sessions/training-2-21 \
 -n nsf-maica
 
+Download predicted images from PVC to local PC
+kubectl cp nsf-maica/pvc-explorer:/workspace/yolo-predictions/predictions-feb-23 \
+/home/troy/yolo-nrp-proj/predicted-images/predictions-2-23 \
+-n nsf-maica
+
 PVC Commands:
 kubectl apply -f /home/troy/internvl-nrp-proj/pvc-explorer.yaml -n nsf-maica
 
