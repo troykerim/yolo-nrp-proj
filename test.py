@@ -21,10 +21,7 @@ def main():
     # Path to trained YOLOv11 weights on PVC  
     model = YOLO(
         "/workspace/output/yolov11-3rd/train_session8/weights/best.pt" 
-        # previously:
         # /workspace/output/yolov11-2nd/train_session2/weights/best.pt"  
-        # "/workspace/output/yolov11/train_session3/weights/best.pt"
-        # /workspace/output/yolov11-2nd/train_session2
     )
 
     # Folder containing test images
@@ -38,8 +35,6 @@ def main():
     output_folder = (
         "/workspace/yolo-predictions/predictions-feb-24"
         # "/workspace/yolo-predictions/predictions-feb-12" 
-        # "/workspace/yolo-predictions/predictions-feb-4"
-        # "/workspace/yolo-predictions/predictions-feb-11"
     )  
 
     # Create output directory if it doesn't exist
