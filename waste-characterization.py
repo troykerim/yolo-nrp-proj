@@ -24,7 +24,7 @@ def print_gpu_stats(device_id):
 
 
 def main():
-    OUTPUT_ROOT = "/workspace/output/yolov11-3rd"
+    OUTPUT_ROOT = "/workspace/yolo-output/yolov11-3rd"
     os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
     model = YOLO("/workspace/models/yolo/yolo11m.pt")

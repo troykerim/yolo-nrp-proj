@@ -39,7 +39,7 @@ spec:
             ls -lh /workspace/data/yolov11-Feb11th-dataset/test/images
 
             echo "[INFO] Running YOLO inference..."
-            python /workspace/test.py
+            python /workspace/yolo-scripts/test.py
 
         resources:
           requests:
