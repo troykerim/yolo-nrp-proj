@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: yolo11-training
-  namespace: nsf-maica
+  namespace: csun-arcs
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 86400
@@ -36,7 +36,7 @@ spec:
             ls -al /workspace/data/jam-material-YOLO
 
             echo "[INFO] Starting YOLO training..."
-            python /workspace/waste_characterization.py
+            python /workspace/yolo-scripts/waste_characterization.py
 
         resources:
           requests:
@@ -55,4 +55,4 @@ spec:
       volumes:
       - name: work
         persistentVolumeClaim:
-          claimName: internvl-work
+          claimName: recykool-work

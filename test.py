@@ -20,7 +20,7 @@ CHANGE PATHS!!! espicially input and output folders!  Double check YOLO location
 def main():
     # Path to trained YOLOv11 weights on PVC  
     model = YOLO(
-        "/workspace/output/yolov11-3rd/train_session8/weights/best.pt" 
+        "/workspace/yolo-output/yolov11-3rd/train_session8/weights/best.pt" 
         # /workspace/output/yolov11-2nd/train_session2/weights/best.pt"  
     )
 

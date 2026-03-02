@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: yolo11-test
-  namespace: nsf-maica
+  namespace: csun-arcs
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 86400
