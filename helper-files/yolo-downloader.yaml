@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: yolo11-model-download
+  namespace: csun-arcs
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+
+      containers:
+      - name: downloader
+        image: ultralytics/ultralytics:latest
+        command: ["/bin/bash", "-lc"]
+        args:
+          - |
+            set -eux
+            mkdir -p /workspace/models/yolo
+            cd /workspace/models/yolo
+
+            echo "[INFO] Downloading yolo11m.pt..."
+            python - << 'EOF'
+            from ultralytics import YOLO
+            YOLO("yolo11m.pt")
+            EOF
+
+            echo "[INFO] Download complete:"
+            ls -lh /workspace/models/yolo
+
+        resources:
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+
+        volumeMounts:
+        - name: work
+          mountPath: /workspace
+
+      volumes:
+      - name: work
+        persistentVolumeClaim:
+          claimName: recykool-work
