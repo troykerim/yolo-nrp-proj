@@ -44,14 +44,14 @@ kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11-3rd/train_session23 
 
 Step 1: Running the training session for the Yolo Model
 kubectl apply -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n csun-arcs
+kubectl logs -f job/yolo11-training -n csun-arcs
+kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n csun-arcs
+kubectl describe pod yolo11-training-XXXXX -n csun-arcs
 
+OLD:
 kubectl apply -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n nsf-maica
-csun-arcs
-
 kubectl logs -f job/yolo11-training -n nsf-maica
-
 kubectl delete -f /home/troy/yolo-nrp-proj/yolo11-training.yaml -n nsf-maica
-
 kubectl describe pod yolo11-training-XXXXX -n nsf-maica
 
 

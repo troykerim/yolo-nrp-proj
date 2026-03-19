@@ -33,7 +33,7 @@ spec:
             nvidia-smi
 
             echo "[INFO] Checking dataset on PVC..."
-            ls -al /workspace/data/Jam Causing Material.v1i.yolov11-3-18
+            ls -al /workspace/data/Jam-Causing-Material.v1i.yolov11-3-18
 
             echo "[INFO] Starting YOLO training..."
             python /workspace/yolo-scripts/waste_characterization.py
