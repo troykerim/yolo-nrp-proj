@@ -37,9 +37,9 @@ kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11.../train_session#...
 /home/troy/yolo-nrp-proj/training-sessions/train...
 
 
-kubectl cp nsf-maica/pvc-explorer:/workspace/output/yolov11-3rd/train_session23 \
-/home/troy/yolo-nrp-proj/training-sessions/training-2-22
-
+Example:
+kubectl cp csun-arcs/pvc-explorer:/workspace/yolo-output/yolov11/train_session2 \
+/home/troy/yolo-nrp-proj/training-sessions/training-3-20
 
 
 Step 1: Running the training session for the Yolo Model
