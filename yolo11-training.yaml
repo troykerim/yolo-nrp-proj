@@ -5,7 +5,7 @@ metadata:
   namespace: csun-arcs
 spec:
   backoffLimit: 0
-  ttlSecondsAfterFinished: 86400
+  ttlSecondsAfterFinished: 172800
   template:
     spec:
       restartPolicy: Never
@@ -33,7 +33,7 @@ spec:
             nvidia-smi
 
             echo "[INFO] Checking dataset on PVC..."
-            ls -al /workspace/data/Jam-Causing-Material.v1i.yolov11-3-18
+            ls -al /workspace/data/jam-causing-material-aug
 
             echo "[INFO] Starting YOLO training..."
             python /workspace/yolo-scripts/waste_characterization.py
