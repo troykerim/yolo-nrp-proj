@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: yolo11-video-inference
+  namespace: csun-arcs
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 172800
+  template:
+    spec:
+      restartPolicy: Never
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                  - NVIDIA-A10
+
+      containers:
+      - name: yolo-video-inference
+        image: ultralytics/ultralytics:latest
+        imagePullPolicy: Always
+
+        command: ["/bin/bash", "-lc"]
+        args:
+          - |
+            set -euxo pipefail
+            python -V
+            nvidia-smi
+
+            echo "[INFO] Checking model path..."
+            ls -al /workspace/yolo-output/yolov11-3-21/train_session2/weights
+
+            echo "[INFO] Checking video path..."
+            ls -al /workspace/data/videos
+
+            echo "[INFO] Checking inference script..."
+            ls -al /workspace/yolo-scripts/video-inference.py
+
+            echo "[INFO] Starting YOLO video inference..."
+            python /workspace/yolo-scripts/video-inference.py
+
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            cpu: "8"
+            memory: "64Gi"
+          limits:
+            nvidia.com/gpu: 1
+            cpu: "16"
+            memory: "100Gi"
+
+        volumeMounts:
+        - name: work
+          mountPath: /workspace
+
+      volumes:
+      - name: work
+        persistentVolumeClaim:
+          claimName: recykool-work
