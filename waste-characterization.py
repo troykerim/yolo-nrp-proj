@@ -33,7 +33,7 @@ def main():
     print(f"[INFO] Training on GPU device {DEVICE_ID}")
 
     train_results = model.train(
-        data="/workspace/data/jam-causing-material-aug/data.yaml",  
+        data="/workspace/data/Jam-Causing-Material-Troy-Set-AUG-yolov11/data.yaml",  
         workers=2,                  # 1, 2, 8; NRP complained about 8 last time
         batch=8,
         epochs=400,
