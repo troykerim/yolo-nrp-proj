@@ -24,7 +24,7 @@ def print_gpu_stats(device_id):
 
 
 def main():
-    OUTPUT_ROOT = "/workspace/yolo-output/yolov11-3-25"
+    OUTPUT_ROOT = "/workspace/yolo-output/yolov11-4-11"
     os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
     model = YOLO("/workspace/models/yolo/yolo11m.pt")
@@ -33,7 +33,7 @@ def main():
     print(f"[INFO] Training on GPU device {DEVICE_ID}")
 
     train_results = model.train(
-        data="/workspace/data/Jam-Causing-Material-Troy-Set-AUG-yolov11/data.yaml",  
+        data="/workspace/data/yolo-dataset-4-11/data.yaml",  
         workers=2,                  # 1, 2, 8; NRP complained about 8 last time
         batch=8,
         epochs=400,
