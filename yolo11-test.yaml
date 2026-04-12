@@ -33,10 +33,10 @@ spec:
             nvidia-smi
 
             echo "[INFO] Verifying model weights..."
-            ls -lh /workspace/yolo-output/yolov11/train_session2/weights
+            ls -lh /workspace/yolo-output/yolov11-4-11/train_session/weights
 
             echo "[INFO] Verifying test dataset..."
-            ls -lh /workspace/data/Jam-Causing-Material.v1i.yolov11-3-18/test/images
+            ls -lh /workspace/data/yolo-dataset-4-11/test/images
 
             echo "[INFO] Running YOLO inference..."
             python /workspace/yolo-scripts/test.py
