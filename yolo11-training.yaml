@@ -5,7 +5,7 @@ metadata:
   namespace: csun-arcs
 spec:
   backoffLimit: 0
-  ttlSecondsAfterFinished: 172800
+  ttlSecondsAfterFinished: 259200
   template:
     spec:
       restartPolicy: Never
